@@ -30,6 +30,8 @@ app.UseHealthChecks(new PathString("/api/health"),
     new CustomerHealthCheckOptions());
 app.MapControllers();
 
+app.MapMethods("/api/heartbeat", new[] { "HEAD" }, () => Results.Ok());
+
 app.MapFallbackToFile("/index.html");
 
 app.Run();
